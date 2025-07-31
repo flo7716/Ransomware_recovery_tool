@@ -12,13 +12,16 @@ if not os.path.exists("samples"):
 plaintext = b"This is a test message for ransomware recovery."
 
 def gen_aes_sample():
-    key = b"this_is_32_byte_aes_encryption_key!"  # 32 bytes
-    iv = b"this_is_16_bytes"                      # 16 bytes for AES-CBC
+    key = b"1234567890ABCDEF1234567890ABCDEF"  # 32-byte AES key
+    iv = b"ABCDEF1234567890"                  # 16-byte IV
     cipher = AES.new(key, AES.MODE_CBC, iv)
     ct = cipher.encrypt(pad(plaintext, AES.block_size))
     with open("samples/aes_sample.enc", "wb") as f:
         f.write(ct)
-    print("[+] AES sample created.")
+    print("[+] AES sample created with key and IV:")
+    print(f"    Key (utf-8): {key.decode()}")
+    print(f"    IV  (utf-8): {iv.decode()}")
+
 
 
 def gen_rsa_sample():
