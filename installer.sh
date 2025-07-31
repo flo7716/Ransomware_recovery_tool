@@ -34,7 +34,12 @@ chmod +x core/decryptors/*.py
 
 # Create a symbolic link for the main script
 echo "Creating symbolic link for the main script..."
-sudo ln -s "$(pwd)/core/decryptors/main.py" /usr/local/bin/ransomware_recovery_tool
+PROGRAM_DIR_PATH=$(find / -type d -name "Ransomware_recovery_tool" 2>/dev/null | head -n 1)
+if [ -z "$PROGRAM_DIR_PATH" ]; then
+    echo "Error: Ransomware Recovery Tool directory not found."
+    exit 1
+fi
+sudo ln -s "$PROGRAM_DIR_PATH/core/decryptors/main.py" /usr/local/bin/ransomware_recovery_tool
 
 # Print completion message
 echo "Installation complete! You can now run the Ransomware Recovery Tool using the command 'ransomware_recovery_tool'."
