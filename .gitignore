@@ -1,0 +1,9 @@
+#ignore sample files
+#ignore compiled Python bytecode files
+#ignore compiled Python bytecode files for decryptor modules
+
+
+./samples
+*.pyc
+*.pem
+*.enc
